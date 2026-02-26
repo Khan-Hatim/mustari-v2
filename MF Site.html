@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mustari Fashion | The New Era of Luxury</title>
+    
+    <meta name="description" content="Mustari Fashion: High-end ethnic and modern ensembles. Secure shopping, global style.">
+    <meta name="keywords" content="Mustari, Luxury Fashion, Ethnic Wear, Premium Suits, Secure Shopping">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --gold: #D4AF37; --obsidian: #0A0A0A; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--obsidian); color: white; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        
+        /* Premium Animations */
+        .hover-gold:hover { color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .btn-prestige { position: relative; overflow: hidden; transition: all 0.4s ease; }
+        .btn-prestige::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+        .btn-prestige:hover::after { left: 100%; }
+
+        /* Logo Glow */
+        .logo-ring { border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); transition: 0.5s; }
+        .logo-ring:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 group">
+                <img src="31905.png" alt="Mustari" class="h-12 w-12 rounded-full logo-ring p-1 bg-white">
+                <span class="font-cinzel text-2xl tracking-[0.2em] text-white group-hover:text-[#D4AF37] transition">MUSTARI</span>
+            </a>
+            
+            <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-medium">
+                <a href="#collections" class="hover-gold transition">Collections</a>
+                <a href="#about" class="hover-gold transition">The Label</a>
+                <button id="loginBtn" class="border border-[#D4AF37] px-6 py-2 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition duration-500 rounded-full">
+                    Login
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10"></div>
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070" class="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_infinite]">
+        </div>
+
+        <div class="relative z-20 text-center px-4 max-w-4xl">
+            <p class="font-cinzel text-[#D4AF37] tracking-[0.5em] mb-4 text-sm animate-bounce">ESTABLISHED 2026</p>
+            <h1 class="text-6xl md:text-8xl font-bold mb-8 tracking-tighter leading-none">Defined by <br><span class="italic text-gray-400">Elegance.</span></h1>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="#collections" class="btn-prestige bg-white text-black px-12 py-5 font-bold uppercase tracking-widest text-xs">Shop Ensembles</a>
+                <a href="https://wa.me/918080430487" class="btn-prestige border border-white/30 px-12 py-5 font-bold uppercase tracking-widest text-xs backdrop-blur-sm hover:bg-white hover:text-black">WhatsApp Concierge</a>
+            </div>
+        </div>
+    </header>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // TODO: PASTE YOUR FIREBASE CONFIG HERE FROM THE FIREBASE CONSOLE
+        const firebaseConfig = {
+            apiKey: "AIzaSyAZbqTOFeN1q0enLlnzcOTAPGdpJvHoKJU",
+            authDomain: "mustari-fashion-32a23.firebaseapp.com",
+            projectId: "mustari-fashion-32a23",
+            storageBucket: "mustari-fashion-32a23.firebasestorage.app",
+            messagingSenderId: "295476929983",
+            appId: "1:295476929983:web:c0c5e0d8ec054cf2eeed0a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+
+        // LOGIN LOGIC
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.addEventListener('click', () => {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    loginBtn.innerText = user.displayName;
+                    console.log("Welcome to Mustari Prestige, ", user.displayName);
+                }).catch((error) => {
+                    console.error("Auth failed: ", error.message);
+                });
+        });
+    </script>
+
+</body>
+</html>
