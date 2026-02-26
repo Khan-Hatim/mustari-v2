@@ -3,99 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mustari Fashion | The New Era of Luxury</title>
-    
-    <meta name="description" content="Mustari Fashion: High-end ethnic and modern ensembles. Secure shopping, global style.">
-    <meta name="keywords" content="Mustari, Luxury Fashion, Ethnic Wear, Premium Suits, Secure Shopping">
-
+    <title>Mustari Fashion | Luxury Redefined</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
     
     <style>
         :root { --gold: #D4AF37; --obsidian: #0A0A0A; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--obsidian); color: white; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--obsidian); color: white; scroll-behavior: smooth; }
         .font-cinzel { font-family: 'Cinzel', serif; }
         
-        /* Premium Animations */
-        .hover-gold:hover { color: var(--gold); text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
-        .btn-prestige { position: relative; overflow: hidden; transition: all 0.4s ease; }
-        .btn-prestige::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
-        .btn-prestige:hover::after { left: 100%; }
+        /* Smooth Fade-In Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Luxury Button Shine */
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after {
+            content: ''; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%;
+            background: rgba(255,255,255,0.2); transform: rotate(30deg); transition: 0.7s;
+        }
+        .btn-shine:hover::after { left: 120%; }
 
         /* Logo Glow */
-        .logo-ring { border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 0 20px rgba(212, 175, 55, 0.1); transition: 0.5s; }
-        .logo-ring:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .logo-ring { border: 1px solid rgba(212, 175, 55, 0.3); transition: 0.5s; }
+        .logo-ring:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
     </style>
 </head>
 <body>
 
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="31905.png" alt="Mustari" class="h-12 w-12 rounded-full logo-ring p-1 bg-white">
-                <span class="font-cinzel text-2xl tracking-[0.2em] text-white group-hover:text-[#D4AF37] transition">MUSTARI</span>
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-lg border-b border-white/10 h-24 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-4">
+                <img src="31905.png" alt="Mustari" class="h-14 w-14 rounded-full logo-ring p-1 bg-white">
+                <div class="hidden sm:block">
+                    <span class="font-cinzel text-2xl tracking-[0.3em] block">MUSTARI</span>
+                    <span class="text-[8px] tracking-[0.5em] text-gray-400 uppercase">The Royal Label</span>
+                </div>
             </a>
             
-            <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-medium">
-                <a href="#collections" class="hover-gold transition">Collections</a>
-                <a href="#about" class="hover-gold transition">The Label</a>
-                <button id="loginBtn" class="border border-[#D4AF37] px-6 py-2 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition duration-500 rounded-full">
-                    Login
-                </button>
+            <div class="flex items-center space-x-8">
+                <div class="hidden md:flex space-x-8 text-[10px] uppercase tracking-[0.2em] font-semibold text-gray-300">
+                    <a href="#collections" class="hover:text-[#D4AF37] transition">Collections</a>
+                    <a href="#bespoke" class="hover:text-[#D4AF37] transition">Bespoke</a>
+                </div>
+                
+                <div id="authContainer" class="flex items-center space-x-4">
+                    <button id="loginBtn" class="border border-[#D4AF37] px-6 py-2 text-[10px] uppercase tracking-widest text-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition duration-500 rounded-full">
+                        Login
+                    </button>
+                    <button id="logoutBtn" class="hidden text-[10px] uppercase tracking-widest text-gray-500 hover:text-white transition">
+                        Logout
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
 
     <header class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-10"></div>
-            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070" class="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_infinite]">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black z-10"></div>
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-50 scale-105 animate-[pulse_12s_infinite]">
         </div>
 
-        <div class="relative z-20 text-center px-4 max-w-4xl">
-            <p class="font-cinzel text-[#D4AF37] tracking-[0.5em] mb-4 text-sm animate-bounce">ESTABLISHED 2026</p>
-            <h1 class="text-6xl md:text-8xl font-bold mb-8 tracking-tighter leading-none">Defined by <br><span class="italic text-gray-400">Elegance.</span></h1>
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <a href="#collections" class="btn-prestige bg-white text-black px-12 py-5 font-bold uppercase tracking-widest text-xs">Shop Ensembles</a>
-                <a href="https://wa.me/918080430487" class="btn-prestige border border-white/30 px-12 py-5 font-bold uppercase tracking-widest text-xs backdrop-blur-sm hover:bg-white hover:text-black">WhatsApp Concierge</a>
+        <div class="relative z-20 text-center px-6 reveal">
+            <h1 class="text-5xl md:text-8xl font-cinzel mb-6 tracking-tight">The <span class="text-[#D4AF37]">Prestige</span> Collection</h1>
+            <p class="text-gray-300 text-sm md:text-lg tracking-[0.3em] uppercase mb-10 max-w-2xl mx-auto">Handcrafted Elegance for the Modern Royalty</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <button class="btn-shine bg-white text-black px-12 py-4 font-bold uppercase tracking-widest text-[10px]">View Ensembles</button>
+                <button class="btn-shine border border-white/20 px-12 py-4 font-bold uppercase tracking-widest text-[10px] backdrop-blur-md">Custom Fitting</button>
             </div>
         </div>
     </header>
 
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+    <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+            <div>
+                <span class="font-cinzel text-xl tracking-widest block mb-6">MUSTARI FASHION</span>
+                <p class="text-gray-500 text-sm leading-relaxed">Crafting timeless luxury since 2026. Every stitch tells a story of heritage and modern sophistication.</p>
+            </div>
+            <div>
+                <h4 class="text-[#D4AF37] text-xs uppercase tracking-[0.3em] font-bold mb-6">Client Service</h4>
+                <ul class="text-gray-400 text-xs space-y-4 uppercase tracking-widest">
+                    <li><a href="#" class="hover:text-white">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-white">Track Order</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[#D4AF37] text-xs uppercase tracking-[0.3em] font-bold mb-6">Connect</h4>
+                <p class="text-gray-400 text-xs mb-4">Join the Mustari inner circle for exclusive previews.</p>
+                <div class="flex border-b border-white/20 pb-2">
+                    <input type="email" placeholder="EMAIL ADDRESS" class="bg-transparent border-none outline-none text-[10px] w-full placeholder:text-gray-700">
+                    <button class="text-[#D4AF37] text-[10px] font-bold">JOIN</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-[10px] text-gray-700 tracking-[0.5em] uppercase border-t border-white/5 pt-10">
+            © 2026 Mustari Fashion Label. All Rights Reserved.
+        </div>
+    </footer>
 
-        // TODO: PASTE YOUR FIREBASE CONFIG HERE FROM THE FIREBASE CONSOLE
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
         const firebaseConfig = {
-            apiKey: "AIzaSyAZbqTOFeN1q0enLlnzcOTAPGdpJvHoKJU",
-            authDomain: "mustari-fashion-32a23.firebaseapp.com",
-            projectId: "mustari-fashion-32a23",
-            storageBucket: "mustari-fashion-32a23.firebasestorage.app",
-            messagingSenderId: "295476929983",
-            appId: "1:295476929983:web:c0c5e0d8ec054cf2eeed0a"
+            apiKey: "YOUR_KEY",
+            authDomain: "YOUR_DOMAIN",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_BUCKET",
+            messagingSenderId: "YOUR_SENDER",
+            appId: "YOUR_APP"
         };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        // LOGIN LOGIC
         const loginBtn = document.getElementById('loginBtn');
-        loginBtn.addEventListener('click', () => {
-            signInWithPopup(auth, provider)
-                .then((result) => {
-                    const user = result.user;
-                    loginBtn.innerText = user.displayName;
-                    console.log("Welcome to Mustari Prestige, ", user.displayName);
-                }).catch((error) => {
-                    console.error("Auth failed: ", error.message);
-                });
-        });
-    </script>
+        const logoutBtn = document.getElementById('logoutBtn');
 
+        // CHECK LOGIN STATE ON LOAD
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginBtn.innerText = "HI, " + user.displayName.split(' ')[0];
+                loginBtn.classList.add('bg-[#D4AF37]', 'text-black');
+                logoutBtn.classList.remove('hidden');
+            } else {
+                loginBtn.innerText = "LOGIN";
+                loginBtn.classList.remove('bg-[#D4AF37]', 'text-black');
+                logoutBtn.classList.add('hidden');
+            }
+        });
+
+        // LOGIN CLICK
+        loginBtn.onclick = async () => {
+            if (!auth.currentUser) {
+                try { await signInWithPopup(auth, provider); } 
+                catch (e) { alert("Error: " + e.message); }
+            }
+        };
+
+        // LOGOUT CLICK
+        logoutBtn.onclick = async () => {
+            await signOut(auth);
+            location.reload();
+        };
+
+        // SCROLL REVEAL ANIMATION
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
-
-   
